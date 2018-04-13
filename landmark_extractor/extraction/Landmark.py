@@ -68,6 +68,8 @@ def loadRule(rule_json_object):
     begin_shift = 0
     end_shift = 0
 
+    rule={}
+
     if 'sub_rules' in rule_json_object:
         sub_rules = rule_json_object['sub_rules']
     
@@ -540,7 +542,7 @@ def main(argv=None):
                 if opt in [('-h', ''), ('--help', '')]:
                     raise Usage('python extraction/Landmark.py [OPTIONAL_PARAMS] [FILE_TO_EXTRACT] [RULES FILE]\n\t[OPTIONAL_PARAMS]: -f to flatten the result')
                 
-        except getopt.error, msg:
+        except getopt.error as msg:
             raise Usage(msg)
         if len(args) > 1:
                 #read the page from arg0
@@ -566,13 +568,13 @@ def main(argv=None):
         extraction_list = rules.validate(extraction_list)
         
         if flatten:
-            print json.dumps(flattenResult(extraction_list), indent=2, separators=(',', ': '))
+            print(json.dumps(flattenResult(extraction_list), indent=2, separators=(',', ': ')))
         else:
-            print json.dumps(extraction_list, indent=2, separators=(',', ': '))
+            print(json.dumps(extraction_list, indent=2, separators=(',', ': ')))
         
-    except Usage, err:
-        print >>sys.stderr, err.msg
-        print >>sys.stderr, "for help use --help"
+    except Usage as err:
+        print(err.msg, end='', file=sys.stderr)
+        print("for help use --help", end='', file=sys.stderr)
         return 2
 
 if __name__ == "__main__":

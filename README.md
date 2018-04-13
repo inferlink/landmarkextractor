@@ -1,3 +1,7 @@
+This repo if forked from https://github.com/inferlink/landmark-extractor 
+
+I have upgraded some syntax to use in Python3
+
 # Landmark Extraction
 
 ## Running
